@@ -44,28 +44,28 @@ class Slug
 	 *
 	 * @var string
 	 */
-	public $field_uri = '';
+	public $uri = 'uri';
 
 	/**
 	 * The table
 	 *
 	 * @var string
 	 */
-	public $field_table = '';
+	public $table = '';
 
 	/**
 	 * The primary id of the table
 	 *
 	 * @var string
 	 */
-	public $field_id = '';
+	public $id = 'id';
 
 	/**
 	 * The title field
 	 *
 	 * @var string
 	 */
-	public $field_title = '';
+	public $title = 'title';
 
 	/**
 	 * The replacement (Either underscore or dash)
@@ -88,27 +88,10 @@ class Slug
 
 		if ( ! empty($config))
 		{
-			$this->_initialize($config);
+			$this->set_config($config);
 		}
 
 		log_message('debug', 'Slug Class Initialized');
-	}
-
-	// --------------------------------------------------------------------
-
-	/**
-	 * Initialize preferences
-	 *
-	 * @param   array
-	 * @return  void
-	 * @access  private
-	 */
-	private function _initialize($config = array())
-	{
-		foreach ($config as $key => $value)
-		{
-			$this->{$key} = $value;
-		}
 	}
 
 	// ------------------------------------------------------------------------
@@ -125,7 +108,10 @@ class Slug
 	{
 		if ( ! empty($config))
 		{
-			$this->_initialize($config);
+			foreach ($config as $key => $value)
+			{
+				$this->{$key} = $value;
+			}
 		}
 	}
 
@@ -152,13 +138,13 @@ class Slug
 
 		if (is_array($data))
 		{
-			if (isset($data[$this->field_uri]) && $data[$this->field_uri] != '')
+			if (isset($data[$this->uri]) && $data[$this->uri] != '')
 			{
-				return $this->_check_uri($this->create_slug($data[$this->field_uri]), $id);
+				return $this->_check_uri($this->create_slug($data[$this->uri]), $id);
 			}
-			elseif (isset($data[$this->field_title]))
+			elseif (isset($data[$this->title]))
 			{
-				return $this->_check_uri($this->create_slug($data[$this->field_title]), $id);
+				return $this->_check_uri($this->create_slug($data[$this->title]), $id);
 			}
 			else
 			{
@@ -214,13 +200,13 @@ class Slug
 		}
 
 		// Setup the query
-		$this->_ci->db->select($this->field_uri)
-			->from($this->field_table)
-			->where($this->field_uri, $new_uri);
+		$this->_ci->db->select($this->uri)
+			->from($this->table)
+			->where($this->uri, $new_uri);
 
 		if ($id)
 		{
-			$this->_ci->db->where($this->field_id.' !=', $id);
+			$this->_ci->db->where($this->id.' !=', $id);
 		}
 
 		$query = $this->_ci->db->get();

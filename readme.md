@@ -14,11 +14,13 @@ mysite.com/post/my-post-title-2
 
 ## Here is an example setup:
 
+Please note that these fields map to your database table fields.
+
 	$config = array(
-		'field_uri' => 'uri',
-		'field_title' => 'title',
-		'field_table' => 'mytable,
-		'field_id' => 'id',
+		'uri' => 'uri',
+		'title' => 'title',
+		'table' => 'mytable,
+		'id' => 'id',
 	);
 	$this->load->library('slug', $config);
 
