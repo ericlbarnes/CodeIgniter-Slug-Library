@@ -17,7 +17,7 @@ mysite.com/post/my-post-title-2
 Please note that these fields map to your database table fields.
 
 	$config = array(
-		'uri' => 'uri',
+		'field' => 'uri',
 		'title' => 'title',
 		'table' => 'mytable,
 		'id' => 'id',

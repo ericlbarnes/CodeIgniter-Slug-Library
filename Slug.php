@@ -44,7 +44,7 @@ class Slug
 	 *
 	 * @var string
 	 */
-	public $uri = 'uri';
+	public $field = 'uri';
 
 	/**
 	 * The table
@@ -133,9 +133,9 @@ class Slug
 
 		if (is_array($data))
 		{
-			if (isset($data[$this->uri]) && $data[$this->uri] != '')
+			if (isset($data[$this->field]) && ! empty($data[$this->field]))
 			{
-				return $this->_check_uri($this->create_slug($data[$this->uri]), $id);
+				return $this->_check_uri($this->create_slug($data[$this->field]), $id);
 			}
 			elseif (isset($data[$this->title]))
 			{
@@ -188,9 +188,9 @@ class Slug
 		$new_uri = ($count > 0) ? $uri.$this->_get_replacement().$count : $uri;
 
 		// Setup the query
-		$this->_ci->db->select($this->uri)
+		$this->_ci->db->select($this->field)
 			->from($this->table)
-			->where($this->uri, $new_uri);
+			->where($this->field, $new_uri);
 
 		if ($id)
 		{
