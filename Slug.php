@@ -213,8 +213,7 @@ class Slug
 
 		if ($query->num_rows() > 0)
 		{
-			$count++;
-			return $this->_check_uri($uri, $id, $count);
+			return $this->_check_uri($uri, $id, ++$count);
 		}
 		else
 		{
