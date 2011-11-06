@@ -67,6 +67,13 @@ class Slug
 	 */
 	public $field_title = '';
 
+	/**
+	 * The replacement (Either underscore or dash)
+	 *
+	 * @var string
+	 */
+	public $replacement = 'dash';
+
 	// ------------------------------------------------------------------------
 
 	/**
@@ -174,17 +181,12 @@ class Slug
 	 * @param   string $replacement will replace keys in map
 	 * @return  string
 	 */
-	public function create_slug($string, $replacement = 'underscore')
+	public function create_slug($string)
 	{
 		$this->_ci->load->helper(array('url', 'text', 'string'));
 		$string = convert_accented_characters($string);
-		$string = strtolower(url_title($string, $replacement));
-
-		if ($replacement == 'dash')
-		{
-			return reduce_multiples($string, '-', TRUE);
-		}
-		return reduce_multiples($string, '_', TRUE);
+		$string = strtolower(url_title($string, $this->replacement));
+		return reduce_multiples($string, $this->_get_replacement(), TRUE);
 	}
 
 	// ------------------------------------------------------------------------
@@ -204,7 +206,7 @@ class Slug
 	{
 		if ($count > 0)
 		{
-			$new_uri = $uri.'_'.$count;
+			$new_uri = $uri.$this->_get_replacement.$count;
 		}
 		else
 		{
@@ -233,5 +235,23 @@ class Slug
 		{
 			return $new_uri;
 		}
+	}
+
+	// ------------------------------------------------------------------------
+
+	/**
+	 * Get the replacement type
+	 *
+	 * Either a dash or underscore generated off the term.
+	 *
+	 * @return string
+	 */
+	private function _get_replacement()
+	{
+		if ($this->replacement == 'dash')
+		{
+			return '-';
+		}
+		return '_';
 	}
 }
