@@ -2,13 +2,16 @@
 
 This library is designed to help you generate friendly uri strings for your content stored in the database.
 
-For example if you have a blog post table then you would want uri strings such as:
-mysite.com/post/my-post-title
+For example if you have a blog post table then you would want uri strings such as: mysite.com/post/my-post-title
 
 The problem with this is each post needs a unique uri string and this library is designed to handle that for you.
 
-So if you add another with the same uri or title it would convert it to:
-mysite.com/post/my-post-title-2
+So if you add another with the same uri or title it would convert it to: mysite.com/post/my-post-title-2
+
+# Requirements
+
+* CodeIgniter
+* Some form of database supported by active record
 
 # Usage
 
