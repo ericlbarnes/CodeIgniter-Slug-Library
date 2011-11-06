@@ -206,14 +206,12 @@ class Slug
 	{
 		if ($count > 0)
 		{
-			$new_uri = $uri.$this->_get_replacement.$count;
+			$new_uri = $uri.$this->_get_replacement().$count;
 		}
 		else
 		{
 			$new_uri = $uri;
 		}
-
-		$count++;
 
 		// Setup the query
 		$this->_ci->db->select($this->field_uri)
@@ -229,6 +227,7 @@ class Slug
 
 		if ($query->num_rows() > 0)
 		{
+			$count++;
 			return $this->_check_uri($uri, $id, $count);
 		}
 		else
