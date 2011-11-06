@@ -6,9 +6,7 @@
  *
  * Licensed under the Academic Free License version 3.0
  *
- * This source file is subject to the Academic Free License (AFL 3.0) that is
- * bundled with this package in the files license_afl.txt / license_afl.rst.
- * It is also available through the world wide web at this URL:
+ * This source file is subject to the Academic Free License (AFL 3.0)
  * http://opensource.org/licenses/AFL-3.0
  *
  * @package     CodeIgniter
@@ -26,7 +24,7 @@
  *
  * Nothing but legless, boneless creatures who are responsible for creating
  * magic "friendly urls" in your CodeIgniter application. Slugs are nocturnal
- * feeders, hiding during daylight hours and should only be exposed in the uri.
+ * feeders, hiding during daylight hours.
  *
  * @subpackage Libraries
  */
@@ -40,28 +38,28 @@ class Slug
 	protected $_ci = '';
 
 	/**
-	 * URI Field in the table
-	 *
-	 * @var string
-	 */
-	public $field = 'uri';
-
-	/**
-	 * The table
+	 * The name of the table
 	 *
 	 * @var string
 	 */
 	public $table = '';
 
 	/**
-	 * The primary id of the table
+	 * The primary id field in the table
 	 *
 	 * @var string
 	 */
 	public $id = 'id';
 
 	/**
-	 * The title field
+	 * The URI Field in the table
+	 *
+	 * @var string
+	 */
+	public $field = 'uri';
+
+	/**
+	 * The title field in the table
 	 *
 	 * @var string
 	 */
@@ -133,28 +131,28 @@ class Slug
 
 		if (is_array($data))
 		{
-			if (isset($data[$this->field]) && ! empty($data[$this->field]))
+			if ( ! empty($data[$this->field]))
 			{
 				return $this->_check_uri($this->create_slug($data[$this->field]), $id);
 			}
-			elseif (isset($data[$this->title]))
+			elseif ( ! empty($data[$this->title]))
 			{
 				return $this->_check_uri($this->create_slug($data[$this->title]), $id);
 			}
-			else
-			{
-				return FALSE;
-			}
 		}
-		else
+		elseif (is_string($data))
 		{
 			return $this->_check_uri($this->create_slug($data), $id);
 		}
+
+		return FALSE;
 	}
 
 	// ------------------------------------------------------------------------
 
 	/**
+	 * Create Slug
+	 *
 	 * Returns a string with all spaces converted to underscores (by default), accented
 	 * characters converted to non-accented characters, and non word characters removed.
 	 *
@@ -165,8 +163,7 @@ class Slug
 	public function create_slug($string)
 	{
 		$this->_ci->load->helper(array('url', 'text', 'string'));
-		$string = convert_accented_characters($string);
-		$string = strtolower(url_title($string, $this->replacement));
+		$string = strtolower(url_title(convert_accented_characters($string), $this->replacement));
 		return reduce_multiples($string, $this->_get_replacement(), TRUE);
 	}
 
