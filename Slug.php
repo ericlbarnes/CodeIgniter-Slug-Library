@@ -85,12 +85,7 @@ class Slug
 	public function __construct($config = array())
 	{
 		$this->_ci =& get_instance();
-
-		if ( ! empty($config))
-		{
-			$this->set_config($config);
-		}
-
+		$this->set_config($config);
 		log_message('debug', 'Slug Class Initialized');
 	}
 
