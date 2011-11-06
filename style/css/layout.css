@@ -1,0 +1,102 @@
+@import url(http://fonts.googleapis.com/css?family=Rammetto+One);
+@import url(http://fonts.googleapis.com/css?family=Quicksand);
+
+/* LAYOUT */
+/* ----------------------------------------- */
+
+body {
+	background:url(../images/tan.jpg) repeat;
+	font-size: 12px;
+    line-height: 1.3em;
+	font-weight: normal;
+	color:#4a4a4a;
+	font-family:'Quicksand', "Trebuchet MS", Verdana, sans-serif;
+	text-shadow: 1px 1px white;
+	margin-top: 60px;
+}
+
+h1 {
+	text-align: center;
+	font-size: 2.8em;
+	margin-bottom:40px;
+	color:#555;
+	text-shadow: 1px 1px white;
+	font-family: 'Rammetto One';
+}
+
+h2 {
+	font-size: 1.3em;
+	margin-bottom:20px;
+	color:#555;
+	font-family: 'Rammetto One';
+}
+
+h3 {
+	text-align: left;
+	font-size: 1.2em;
+	color:#555;
+	margin-bottom:20px;
+	font-family: 'Rammetto One';
+}
+
+p {
+	font-size: 1.1em;
+	line-height:1.6em;
+	padding:0;
+	margin-bottom:20px;
+}
+
+a {
+	color:#444;
+	text-decoration: underline;
+}
+a:hover {
+	text-decoration: none;
+}
+
+li {
+	padding: 5px;
+}
+
+#wrapper {
+	width:740px;
+	margin:20px auto;
+	border: 15px solid #eeede1;
+	-webkit-box-shadow: 0 0 8px #888;
+	position: relative;
+}
+#content {
+	background:#ccc;
+	font-size:1.2em;
+	padding: 10px;
+	border: 1px solid #aaa;
+}
+
+#slug {
+	position: absolute;
+	top:  -86px;
+	left: 200px;
+}
+
+#footer {
+	text-align: center;
+}
+#footer a {
+	text-decoration: none;
+}
+pre, code { background: #000; color: #fff; padding: 15px;}
+pre {
+	font-family: Monaco, Verdana, Sans-serif;
+	font-size: 12px;
+    line-height: 1.3em;
+	background-color: #f9f9f9;
+	border: 1px solid #D0D0D0;
+	color: #002166;
+	display: block;
+	margin: 14px 0 14px 0;
+	padding: 12px 10px 12px 10px;
+	background: none repeat scroll 0 0 #EEEEEE;
+	border: 1px solid #DDDDDD;
+	clear: both;
+	overflow: auto;
+}
