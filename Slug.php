@@ -232,10 +232,6 @@ class Slug
 	 */
 	private function _get_replacement()
 	{
-		if ($this->replacement == 'dash')
-		{
-			return '-';
-		}
-		return '_';
+		return ($this->replacement === 'dash') ? '-' : '_';
 	}
 }
