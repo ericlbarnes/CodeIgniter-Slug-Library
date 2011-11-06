@@ -190,14 +190,7 @@ class Slug
 	 */
 	private function _check_uri($uri, $id = FALSE, $count = 0)
 	{
-		if ($count > 0)
-		{
-			$new_uri = $uri.$this->_get_replacement().$count;
-		}
-		else
-		{
-			$new_uri = $uri;
-		}
+		$new_uri = ($count > 0) ? $uri.$this->_get_replacement().$count : $uri;
 
 		// Setup the query
 		$this->_ci->db->select($this->uri)
