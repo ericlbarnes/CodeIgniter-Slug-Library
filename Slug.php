@@ -31,13 +31,6 @@
 class Slug
 {
 	/**
-	 * Global ci
-	 *
-	 * @var object
-	 **/
-	protected $_ci = '';
-
-	/**
 	 * The name of the table
 	 *
 	 * @var string
@@ -82,7 +75,6 @@ class Slug
 	 */
 	public function __construct($config = array())
 	{
-		$this->_ci =& get_instance();
 		$this->set_config($config);
 		log_message('debug', 'Slug Class Initialized');
 	}
@@ -162,7 +154,8 @@ class Slug
 	 */
 	public function create_slug($string)
 	{
-		$this->_ci->load->helper(array('url', 'text', 'string'));
+		$CI =& get_instance();
+		$CI->load->helper(array('url', 'text', 'string'));
 		$string = strtolower(url_title(convert_accented_characters($string), $this->replacement));
 		return reduce_multiples($string, $this->_get_replacement(), TRUE);
 	}
@@ -182,19 +175,20 @@ class Slug
 	 */
 	private function _check_uri($uri, $id = FALSE, $count = 0)
 	{
+		$CI =& get_instance();
 		$new_uri = ($count > 0) ? $uri.$this->_get_replacement().$count : $uri;
 
 		// Setup the query
-		$this->_ci->db->select($this->field)
+		$CI->db->select($this->field)
 			->from($this->table)
 			->where($this->field, $new_uri);
 
 		if ($id)
 		{
-			$this->_ci->db->where($this->id.' !=', $id);
+			$CI->db->where($this->id.' !=', $id);
 		}
 
-		$query = $this->_ci->db->get();
+		$query = $CI->db->get();
 
 		if ($query->num_rows() > 0)
 		{
