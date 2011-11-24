@@ -55,7 +55,7 @@ Setup the library with your config options.
 
 ```php
 $config = array(
-	'table' => 'mytable,
+	'table' => 'mytable',
 	'id' => 'id',
 	'field' => 'uri',
 	'title' => 'title',
@@ -74,7 +74,7 @@ Pass an array of config vars that will override setup
 
 ```php
 $config = array(
-	'table' => 'mytable,
+	'table' => 'mytable',
 	'id' => 'id',
 	'field' => 'uri',
 	'title' => 'title',
