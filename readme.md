@@ -22,7 +22,7 @@ Please note that these fields map to your database table fields.
 	$config = array(
 		'field' => 'uri',
 		'title' => 'title',
-		'table' => 'mytable,
+		'table' => 'mytable',
 		'id' => 'id',
 	);
 	$this->load->library('slug', $config);
