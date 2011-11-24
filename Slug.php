@@ -166,7 +166,7 @@ class Slug
 	 * Check URI
 	 *
 	 * Checks other items for the same uri and if something else has it
-	 * change the name to "name_1".
+	 * change the name to "name-1".
 	 *
 	 * @param   string $uri
 	 * @param   int $id
@@ -179,18 +179,14 @@ class Slug
 		$new_uri = ($count > 0) ? $uri.$this->_get_replacement().$count : $uri;
 
 		// Setup the query
-		$CI->db->select($this->field)
-			->from($this->table)
-			->where($this->field, $new_uri);
+		$CI->db->select($this->field)->where($this->field, $new_uri);
 
 		if ($id)
 		{
-			$CI->db->where($this->id.' !=', $id);
+			$CI->db->where($this->id.'!=', $id);
 		}
 
-		$query = $CI->db->get();
-
-		if ($query->num_rows() > 0)
+		if ($CI->db->count_all_results($this->table) > 0)
 		{
 			return $this->_check_uri($uri, $id, ++$count);
 		}
