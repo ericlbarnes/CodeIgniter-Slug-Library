@@ -183,7 +183,7 @@ class Slug
 
 		if ($id)
 		{
-			$CI->db->where($this->id.'!=', $id);
+			$CI->db->where($this->id.' !=', $id);
 		}
 
 		if ($CI->db->count_all_results($this->table) > 0)
