@@ -35,7 +35,7 @@ When creating a uri for adding to the database you will use something like this:
 		'title' => 'My Test',
 	);
 	$data['uri'] = $this->slug->create_uri($data);
-	$this->db->insert('mytable, $data);
+	$this->db->insert('mytable', $data);
 
 Then for editing: (Notice the create_uri uses the second param to compare against other fields).
 
