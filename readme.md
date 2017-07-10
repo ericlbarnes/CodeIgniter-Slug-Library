@@ -88,7 +88,7 @@ Creates the actual uri string and in the background validates against the table 
 
 **Paramaters**
 
-* $data - (requied) Array of data
+* $data - (requied) Array or object of data
 * $id - (optional) Id of current record
 
 ```php
@@ -102,6 +102,20 @@ $this->slug->create_uri($data)
 $data = array(
 	'title' => 'My Test',
 );
+$this->slug->create_uri($data, 1)
+```
+
+```php
+$data = (object)[];
+$data->title = 'My Test',
+
+$this->slug->create_uri($data)
+```
+
+```php
+$data = (object)[];
+$data->title = 'My Test',
+
 $this->slug->create_uri($data, 1)
 ```
 
