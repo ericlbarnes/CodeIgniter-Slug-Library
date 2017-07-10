@@ -132,6 +132,17 @@ class Slug
 				return $this->_check_uri($this->create_slug($data[$this->title]), $id);
 			}
 		}
+		elseif (is_object($data))
+		{
+			if ( ! empty($data->{$this->field}))
+			{
+				return $this->_check_uri($this->create_slug($data->{$this->field}), $id);
+			}
+			elseif ( ! empty($data->{$this->title}))
+			{
+				return $this->_check_uri($this->create_slug($data->{$this->title}), $id);
+			}
+		}
 		elseif (is_string($data))
 		{
 			return $this->_check_uri($this->create_slug($data), $id);
