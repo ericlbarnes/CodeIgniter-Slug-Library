@@ -107,14 +107,14 @@ $this->slug->create_uri($data, 1)
 
 ```php
 $data = (object)[];
-$data->title = 'My Test',
+$data->title = 'My Test';
 
 $this->slug->create_uri($data)
 ```
 
 ```php
 $data = (object)[];
-$data->title = 'My Test',
+$data->title = 'My Test';
 
 $this->slug->create_uri($data, 1)
 ```
